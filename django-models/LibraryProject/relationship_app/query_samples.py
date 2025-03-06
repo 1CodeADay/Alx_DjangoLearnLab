@@ -20,7 +20,8 @@ def books_in_library(library_name):
 # Retrieve the librarian for a library
 def get_librarian(library_name):
     library = Library.objects.get(name=library_name)
-    return library.librarian
+    # return library.librarian
+    return Librarian.objects.get(library=library)
 
 # Example usage
 if __name__ == "__main__":
