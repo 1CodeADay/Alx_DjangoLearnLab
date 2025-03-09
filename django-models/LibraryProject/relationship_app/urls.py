@@ -1,6 +1,7 @@
 from django.urls import path, include
-from .views import home, list_books, LibraryDetailView
 from django.contrib import admin
+from .views import list_books
+from .views import home, LibraryDetailView
 
 
 urlpatterns = [
