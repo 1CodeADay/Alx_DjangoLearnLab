@@ -17,12 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from relationship_app.views import home  # Importer la vue home
+from django.contrib.auth import views as auth_views
+
 
 urlpatterns = [
 
     path("admin/", admin.site.urls),
+    path("books/", include("relationship_app.urls")),  # Assure-toi que "books/" est bien géré
+     path('', include('relationship_app.urls')),
     path('library/<int:pk>/', include('relationship_app.urls')),
 
-    path("books/", include("relationship_app.urls")),  # Assure-toi que "books/" est bien géré
+
     path("", home, name="home"),  # Ajoute la route pour la page d'accueil
+
 ]
