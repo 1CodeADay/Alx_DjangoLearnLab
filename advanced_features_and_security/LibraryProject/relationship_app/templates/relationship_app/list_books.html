@@ -6,6 +6,12 @@
 </head>
 <body>
     <h1>Books Available:</h1>
+
+    <form method="GET" action="{% url 'book_list' %}">
+      <input type="text" name="search" value="{{ search_term }}" placeholder="Search for books">
+      <button type="submit">Search</button>
+  </form>
+  
     <ul>
         {% for book in books %}
             <li>{{ book.title }} by {{ book.author.name }}</li>

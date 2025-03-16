@@ -20,9 +20,15 @@ def home(request):
     return HttpResponse("Bienvenue sur la page d'accueil !")
 
 
-def list_books(request):
+""" def list_books(request):
     books = Book.objects.all()
-    return render(request, "relationship_app/list_books.html", {"books": books})
+    return render(request, "relationship_app/list_books.html", {"books": books}) """
+
+def list_books(request):
+    search_term = request.GET.get('search', '')  # Get the search term from the GET request
+    books = Book.objects.filter(title__icontains=search_term)  # Filter books based on search term
+    return render(request, "relationship_app/list_books.html", {"books": books, "search_term": search_term})
+
 
 
 class LibraryDetailView(DetailView):

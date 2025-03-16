@@ -49,7 +49,20 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'csp.middleware.CSPMiddleware',
 ]
+
+
+# Security settings for Content Security Policy (CSP)
+# The CSP header helps prevent Cross-Site Scripting (XSS) attacks by controlling
+# the sources of content that can be loaded in your application.
+# This policy specifies allowed domains for scripts, styles, images, etc.
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'",)
+CSP_STYLE_SRC = ("'self'", "'unsafe-inline'",)
+CSP_IMG_SRC = ("'self'", "data:")
+CSP_CONNECT_SRC = ("'self'",)
+
 
 ROOT_URLCONF = 'LibraryProject.urls'
 
@@ -129,3 +142,24 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = 'login'
 
 AUTH_USER_MODEL = 'bookshelf.CustomUser'
+
+
+# Security settings for CSRF Protection
+# CSRF (Cross-Site Request Forgery) protection ensures that requests to your application
+# are coming from trusted sources (like your website) and not malicious third parties.
+# These settings ensure the security of all POST requests and forms.
+
+DEBUG = False
+
+SECURE_BROWSER_XSS_FILTER = True
+
+X_FRAME_OPTIONS = 'DENY'
+
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+
+# Session security settings
+# These settings ensure that session cookies are only sent over secure (HTTPS) connections
