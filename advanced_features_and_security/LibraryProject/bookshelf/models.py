@@ -2,10 +2,31 @@ from django.db import models
 
 # Create your models here.
 
-class Book(models.Model):
+""" class Book(models.Model):
     title = models.CharField(max_length=200)
     author = models.CharField(max_length=100)
     publication_year = models.IntegerField()
+
+    def __str__(self):
+        return self.title """
+
+#  Update models.py in bookshelf app:
+class Book(models.Model):
+    title = models.CharField(max_length=200)
+    author = models.CharField(max_length=100)
+    published_year = models.DateField(default="2000-01-01")
+
+
+    def publication_year(self):  # Extract year from published_date
+        return self.published_year.year if self.published_year else None
+
+    class Meta:
+        permissions = [
+            ("can_view", "Can view book"),
+            ("can_create", "Can create book"),
+            ("can_edit", "Can edit book"),
+            ("can_delete", "Can delete book"),
+        ]
 
     def __str__(self):
         return self.title
