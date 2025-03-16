@@ -1,0 +1,24 @@
+<!-- bookshelf/templates/bookshelf/book_list.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book List</title>
+</head>
+<body>
+    <h1>Books</h1>
+
+    <ul>
+        {% for book in books %}
+            <li>{{ book.title }} by {{ book.author }} (Published in {{ book.published_year }})</li>
+        {% empty %}
+            <li>No books found.</li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+    <a href="{% url 'book_search' %}">Search for Books</a>
+</body>
+</html>
