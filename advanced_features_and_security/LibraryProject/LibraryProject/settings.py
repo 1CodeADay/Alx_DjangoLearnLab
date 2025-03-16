@@ -163,3 +163,26 @@ SESSION_COOKIE_SECURE = True
 
 # Session security settings
 # These settings ensure that session cookies are only sent over secure (HTTPS) connections
+
+
+# SECURITY SETTINGS
+
+# Redirect all HTTP traffic to HTTPS
+SECURE_SSL_REDIRECT = True
+
+# Enable HTTP Strict Transport Security (HSTS)
+SECURE_HSTS_SECONDS = 31536000  # 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Apply HSTS to all subdomains
+SECURE_HSTS_PRELOAD = True  # Allow preloading HSTS into browsers
+
+# Ensure Django is aware of secure proxies (for deployments behind load balancers)
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+
+# Force session cookies to be sent only over HTTPS
+SESSION_COOKIE_SECURE = True
+
+# Force CSRF cookies to be sent only over HTTPS
+CSRF_COOKIE_SECURE = True
+
+
