@@ -54,3 +54,17 @@ def create_book(request):
         if form.is_valid():
             # Proceed with creating the book
             Book.objects.create(**form.cleaned_data)
+
+# bookshelf/views.py
+
+from .forms import ExampleForm
+
+def book_search(request):
+    books = Book.objects.all()
+    form = ExampleForm(request.GET)
+
+    if form.is_valid():
+        search_term = form.cleaned_data['search_term']
+        books = Book.objects.filter(title__icontains=search_term)
+
+    return render(request, 'bookshelf/book_list.html', {'books': books, 'form': form})
