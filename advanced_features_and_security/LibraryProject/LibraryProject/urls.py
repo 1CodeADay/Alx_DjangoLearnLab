@@ -24,7 +24,7 @@ urlpatterns = [
 
     path("admin/", admin.site.urls),
     path("books/", include("relationship_app.urls")),  # Assure-toi que "books/" est bien géré
-     path('', include('relationship_app.urls')),
+    path('', include('relationship_app.urls')),
     path('library/<int:pk>/', include('relationship_app.urls')),
 
 
